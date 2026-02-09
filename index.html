@@ -598,24 +598,18 @@ home_dua: [
         return titles[type];
     }
 
-    window.onload = function () {
-    const ticker = document.getElementById("mainTicker");
-
-    // ترتيب عشوائي
-    const shuffled = hadithDatabase.sort(() => Math.random() - 0.5);
-
-    // عرض كل الأحاديث بدون تقطيع
-    ticker.innerHTML = shuffled.join(
-        " &nbsp; ✨ &nbsp; "
-    );
-};
-
-    }
-
-    showHadith(); // أول حديث
-    setInterval(showHadith, 6000); // كل 6 ثواني
-};
-
+    // تشغيل شريط الأحاديث عند فتح الموقع
+    window.onload = function() {
+    const ticker = document.getElementById('mainTicker');
+    if (ticker) {
+        // وظيفة لخلط الأحاديث واختيار مجموعة منها فقط
+        const shuffled = hadithDatabase.sort(() => 0.5 - Math.random());
+        
+        // اختيار أول 20 حديث عشوائي لضمان عرضهم بالكامل بدون مشاكل تقنية
+        const selectedHadiths = shuffled.slice(0, 20);
+        
+        // عرض الأحاديث المختارة في الشريط
+        ticker.innerHTML = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
     }
 };
 </script>

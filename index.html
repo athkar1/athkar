@@ -282,13 +282,21 @@
     }
 
     // تشغيل شريط الأحاديث عند فتح الموقع
-    window.onload = function() {
-        const ticker = document.getElementById('mainTicker');
-        if (ticker) {
-            ticker.innerHTML = hadithDatabase.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
-        }
-    };
+  window.onload = function() {
+    const ticker = document.getElementById('mainTicker');
+    if (ticker) {
+        // وظيفة لخلط الأحاديث واختيار مجموعة منها فقط
+        const shuffled = hadithDatabase.sort(() => 0.5 - Math.random());
+        
+        // اختيار أول 20 حديث عشوائي لضمان عرضهم بالكامل بدون مشاكل تقنية
+        const selectedHadiths = shuffled.slice(0, 20);
+        
+        // عرض الأحاديث المختارة في الشريط
+        ticker.innerHTML = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
+    }
+};
 </script>
 
 </body>
 </html>
+

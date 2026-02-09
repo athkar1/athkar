@@ -30,6 +30,8 @@
             font-weight: bold;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             border-bottom: 3px solid #b38f1d;
+            text-align: center;
+white-space: normal;
         }
 
         header {
@@ -115,7 +117,7 @@
 <body>
 
 <div class="hadith-ticker">
-    <marquee id="mainTicker" scrollamount="5">جاري تحميل الأحاديث الشريفة...</marquee>
+<div id="mainTicker">جاري تحميل الأحاديث الشريفة...</div>
 </div>
 
 <header>
@@ -586,19 +588,23 @@ home_dua: [
         return titles[type];
     }
 
-    // تشغيل شريط الأحاديث عند فتح الموقع
-    window.onload = function() {
-    const ticker = document.getElementById('mainTicker');
-    if (ticker) {
-        // وظيفة لخلط الأحاديث واختيار مجموعة منها فقط
-        const shuffled = hadithDatabase.sort(() => 0.5 - Math.random());
-        
-        // اختيار أول 20 حديث عشوائي لضمان عرضهم بالكامل بدون مشاكل تقنية
-        const selectedHadiths = shuffled.slice(0, 200);
-        
-        // عرض الأحاديث المختارة في الشريط
-        const text = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
-ticker.innerHTML = text + " &nbsp;&nbsp;&nbsp; " + text;
+    window.onload = function () {
+    const ticker = document.getElementById("mainTicker");
+    let index = 0;
+
+    function showHadith() {
+        ticker.innerText = hadithDatabase[index];
+        index++;
+
+        if (index >= hadithDatabase.length) {
+            index = 0; // يرجع لأول حديث
+        }
+    }
+
+    showHadith(); // أول حديث
+    setInterval(showHadith, 6000); // كل 6 ثواني
+};
+
     }
 };
 </script>

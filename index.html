@@ -47,8 +47,8 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
             margin-bottom: 30px;
         }
 
@@ -289,7 +289,7 @@
         const shuffled = hadithDatabase.sort(() => 0.5 - Math.random());
         
         // اختيار أول 20 حديث عشوائي لضمان عرضهم بالكامل بدون مشاكل تقنية
-        const selectedHadiths = shuffled.slice(0, 20);
+        const selectedHadiths = shuffled.slice(0, 200);
         
         // عرض الأحاديث المختارة في الشريط
         ticker.innerHTML = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");

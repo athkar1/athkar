@@ -210,7 +210,7 @@
         istighfar: [
             "أستغفر الله العظيم واتوب إليه (100 مرة).",
             "اللهم اغفر لي وارحمني وتب علي إنك أنت التواب الرحيم.",
-            "سيد الاستغفار: اللهم أنت ربي لا إله إلا أنت...",
+            "سيد الاستغفار هو أفضل صيغ طلب المغفرة، قال النبي ﷺ: اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ. مَن قاله موقناً به نهاراً أو ليلاً ومات، دخل الجنة.",
             "أستغفر الله العظيم الذي لا إله إلا هو الحي القيوم وأتوب إليه."
         ]
     };
@@ -225,14 +225,18 @@
         window.scrollTo({ top: 350, behavior: 'smooth' });
     }
 
-    function showQuran() {
-        const content = document.getElementById('main-content');
-        content.innerHTML = `
+   function showQuran() {
+    const content = document.getElementById('main-content');
+    content.innerHTML = `
+        <div style="text-align: center; padding: 50px;">
             <h2 class="section-title">المصحف الإلكتروني الكامل</h2>
-            <iframe class="quran-frame" src="https://quran.ksu.edu.sa/index.php?l=ar"></iframe>
-        `;
-        window.scrollTo({ top: 350, behavior: 'smooth' });
-    }
+            <p style="font-size: 1.5rem; margin-bottom: 30px;">سيتم نقلك الآن إلى المصحف الإلكتروني الشامل لقراءة القرآن الكريم وتصفح السور.</p>
+            <a href="https://quran.com/ar" target="_blank" class="menu-btn" style="text-decoration: none; display: inline-block; width: auto; padding: 20px 40px; background: var(--gold-accent); color: white;">اضغط هنا لفتح المصحف</a>
+            <p style="margin-top: 20px; color: #666;">(يفتح في نافذة جديدة لضمان أفضل تجربة قراءة)</p>
+        </div>
+    `;
+    window.scrollTo({ top: 350, behavior: 'smooth' });
+}
 
     function getTitle(type) {
         const titles = {morning:"أذكار الصباح", evening:"أذكار المساء", prayer:"أذكار بعد الصلاة", rizq:"أدعية الرزق", sick:"أدعية المريض", istighfar:"الاستغفار والتوبة"};
@@ -242,3 +246,4 @@
 
 </body>
 </html>
+

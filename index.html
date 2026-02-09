@@ -3,261 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أفلا يتذكرون | الموسوعة الشاملة للأذكار</title>
+    <title>نُور الذِّكر | أذكار المسلم اليومية</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-purple: #4a148c; /* بنفسجي ملكي أعمق */
-            --light-silver: #fdfdfd; 
-            --accent-gold: #c5a021;
+            --primary-purple: #4a148c;
+            --light-silver: #f4f4f9;
+            --accent-gold: #d4af37;
             --text-dark: #2c3e50;
         }
 
         body {
             font-family: 'Amiri', serif;
-            background-color: #f4f4f7;
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-            line-height: 1.8;
+            background-color: var(--light-silver);
+            margin: 0; padding: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/islamic-art.png');
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/islamic-art.png');
-            opacity: 0.08;
-            z-index: -1;
+        /* شريط الأحاديث المتحرك */
+        .hadith-ticker {
+            background: var(--accent-gold);
+            color: #fff;
+            padding: 10px 0;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #b38f1d;
         }
+        .hadith-ticker marquee { font-size: 1.2rem; }
 
         header {
-            background: linear-gradient(135deg, var(--primary-purple), #7b1fa2);
+            background: linear-gradient(45deg, #4a148c, #7b1fa2);
             color: white;
             text-align: center;
-            padding: 3rem 0;
-            border-bottom: 4px solid var(--accent-gold);
+            padding: 40px 20px;
+            border-bottom: 5px solid var(--accent-gold);
         }
 
-        header h1 {
-            font-family: 'Reem Kufi', sans-serif;
-            font-size: 3.5rem;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+        header h1 { font-family: 'Reem Kufi', sans-serif; font-size: 3.5rem; margin: 0; }
 
-        .container {
-            max-width: 900px;
-            margin: -40px auto 40px;
-            padding: 0 20px;
-        }
+        .container { max-width: 1000px; margin: 30px auto; padding: 20px; }
 
-        /* تنسيق الأزرار بشكل مرتب */
-        .category-grid {
+        .main-nav {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 10px;
             margin-bottom: 30px;
         }
 
-        .category-btn {
-            background: white;
-            border: none;
-            color: var(--primary-purple);
-            padding: 15px 10px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            border-bottom: 3px solid #ddd;
+        .nav-btn {
+            background: white; border: 2px solid var(--primary-purple);
+            color: var(--primary-purple); padding: 12px; border-radius: 10px;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
         }
 
-        .category-btn:hover {
-            background: var(--primary-purple);
-            color: white;
-            transform: translateY(-5px);
-            border-bottom-color: var(--accent-gold);
+        .nav-btn:hover, .nav-btn.active { background: var(--primary-purple); color: white; }
+
+        .content-box {
+            background: white; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); min-height: 500px;
         }
 
-        #content-area {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            min-height: 400px;
+        .dhikr-card {
+            background: #fdfaff; padding: 20px; border-radius: 15px;
+            margin-bottom: 15px; border-right: 5px solid var(--accent-gold);
+            font-size: 1.5rem; line-height: 2.2;
         }
 
-        .section-title {
-            text-align: center;
-            color: var(--primary-purple);
-            font-size: 2rem;
-            margin-bottom: 30px;
-            border-bottom: 2px double var(--accent-gold);
-            display: inline-block;
-            width: 100%;
-            padding-bottom: 10px;
-        }
-
-        .dhikr-item {
-            background: #fff;
-            margin-bottom: 20px;
-            padding: 25px;
-            border-radius: 15px;
-            border-right: 5px solid var(--primary-purple);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .dhikr-item:hover {
-            background: #fdfaff;
-        }
-
-        .quran-text {
-            font-size: 1.8rem;
-            color: #1a1a1a;
-            display: block;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        .note {
-            color: #7b1fa2;
-            font-size: 1rem;
-            font-weight: bold;
-            display: block;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-        }
+        /* تنسيق القرآن */
+        .quran-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .surah-btn { background: #eee; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }
+        .surah-btn:hover { background: var(--accent-gold); color: white; }
 
         .hidden { display: none; }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--primary-purple);
-            font-weight: bold;
-        }
-
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            .quran-text { font-size: 1.4rem; }
-        }
+        footer { text-align: center; padding: 40px; color: var(--primary-purple); }
     </style>
 </head>
 <body>
 
+<div class="hadith-ticker">
+    <marquee scrollamount="6">
+        قال ﷺ: (خَيْرُكم من تعلَّم القُرآنَ وعلَّمه) .. قال ﷺ: (من قال سبحان الله وبحمده في يوم مائة مرة حطت خطاياه وإن كانت مثل زبد البحر) .. قال ﷺ: (الدعاء هو العبادة) .. قال ﷺ: (الباقيات الصالحات: سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر)
+    </marquee>
+</div>
+
 <header>
-    <h1>أفلا يتذكرون</h1>
-    <p>موسوعة الأذكار والأدعية المستجابة</p>
+    <h1>نُور الذِّكر</h1>
+    <p>أذكار المسلم اليومية والموسوعة القرآنية</p>
 </header>
 
 <div class="container">
-    <div class="category-grid">
-        <button class="category-btn" onclick="showDhikr('morning')">🌅 الصباح</button>
-        <button class="category-btn" onclick="showDhikr('evening')">🌆 المساء</button>
-        <button class="category-btn" onclick="showDhikr('sleep')">😴 النوم</button>
-        <button class="category-btn" onclick="showDhikr('wakeup')">☀️ الاستيقاظ</button>
-        <button class="category-btn" onclick="showDhikr('rizq')">💰 الرزق</button>
-        <button class="category-btn" onclick="showDhikr('study')">📚 الدراسة</button>
-        <button class="category-btn" onclick="showDhikr('marriage')">💍 الزواج</button>
-        <button class="category-btn" onclick="showDhikr('market')">🛒 السوق</button>
-        <button class="category-btn" onclick="showDhikr('travel')">✈️ السفر</button>
-        <button class="category-btn" onclick="showDhikr('distress')">🤲 الهم والغم</button>
+    <div class="main-nav">
+        <button class="nav-btn" onclick="showSection('morning')">🌅 الصباح</button>
+        <button class="nav-btn" onclick="showSection('evening')">🌆 المساء</button>
+        <button class="nav-btn" onclick="showSection('afterPrayer')">🕌 بعد الصلاة</button>
+        <button class="nav-btn" onclick="showSection('sick')">🤒 المريض</button>
+        <button class="nav-btn" onclick="showSection('rizq')">💰 الرزق</button>
+        <button class="nav-btn" onclick="showSection('quran')">📖 القرآن الكريم</button>
+        <button class="nav-btn" onclick="showSection('istighfar')">📿 استغفار</button>
     </div>
 
-    <div id="content-area">
-        <div id="welcome-msg" style="text-align: center;">
-            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972412.png" width="100" style="margin-bottom: 20px; opacity: 0.8;">
-            <h2 style="color: var(--primary-purple);">مرحباً بك في أذكار المسلم</h2>
-            <p>اختر القسم الذي تريده لبدء القراءة والذكر</p>
+    <div class="content-box" id="display-area">
+        <div id="welcome">
+            <h2 style="text-align:center; color: var(--primary-purple);">مرحباً بك في موقع "نُور الذِّكر"</h2>
+            <p style="text-align:center;">اختر من القائمة في الأعلى للبدء</p>
         </div>
-        <div id="dhikr-list"></div>
+        <div id="content-list"></div>
     </div>
 </div>
 
 <footer>
-    صُنع بحب ليكون صدقة جارية <br>
-    (أَفَلَا يَتَذَكَّرُونَ)
+    جميع الحقوق محفوظة - صدقة جارية <br>
+    أَفَلَا يَتَذَكَّرُونَ
 </footer>
 
 <script>
-    const data = {
-        morning: [
-            { t: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", n: "مرة واحدة" },
-            { t: "اللَّهُمَّ بِي أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ.", n: "مرة واحدة" },
-            { t: "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ.", n: "مرة واحدة" },
-            { t: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.", n: "3 مرات" }
+    const database = {
+        afterPrayer: [
+            {t: "أستغفر الله (ثلاثاً)"},
+            {t: "اللهم أنت السلام ومنك السلام تباركت يا ذا الجلال والإكرام"},
+            {t: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير"},
+            {t: "سبحان الله (33 مرة)"}, {t: "الحمد لله (33 مرة)"}, {t: "الله أكبر (33 مرة)"}
         ],
-        evening: [
-            { t: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ.", n: "مرة واحدة" },
-            { t: "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ.", n: "مرة واحدة" },
-            { t: "أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.", n: "3 مرات" }
+        sick: [
+            {t: "أذهب البأس رب الناس، اشف وأنت الشافي، لا شفاء إلا شفاؤك"},
+            {t: "بسم الله (3 مرات) أعوذ بالله وقدرته من شر ما أجد وأحاذر (7 مرات)"},
+            {t: "اللهم رب الناس مذهب البأس اشف أنت الشافي"}
         ],
-        sleep: [
-            { t: "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ.", n: "مرة واحدة" },
-            { t: "اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ.", n: "3 مرات" },
-            { t: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا.", n: "مرة واحدة" }
+        quran: [
+            {name: "الفاتحة", text: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ (1) الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ (2) الرَّحْمَنِ الرَّحِيمِ (3) مَالِكِ يَوْمِ الدِّينِ (4)..."},
+            {name: "الإخلاص", text: "قُلْ هُوَ اللَّهُ أَحَدٌ (1) اللَّهُ الصَّمَدُ (2) لَمْ يَلِدْ وَلَمْ يُولَدْ (3) وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ (4)"},
+            {name: "الفلق", text: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ (1)..."},
+            {name: "الناس", text: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ (1)..."}
         ],
-        rizq: [
-            { t: "اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ.", n: "دعاء الرزق وقضاء الدين" },
-            { t: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا.", n: "بعد صلاة الفجر" },
-            { t: "يَا رزاقُ ارْزُقْنِي، يَا وَهَّابُ هَبْ لِي مِنْ خَيْرَيِ الدُّنْيَا وَالآخِرَةِ.", n: "كررها بيقين" }
-        ],
-        study: [
-            { t: "رَبِّ زِدْنِي عِلْمًا.", n: "لطلب الزيادة في العلم" },
-            { t: "اللهم لا سهل إلا ما جعلته سهلاً، وأنت تجعل الحزن إذا شئت سهلاً.", n: "لتيسير الامتحانات" },
-            { t: "اللهم افتح لي فتوح العارفين بفضلك.", n: "قبل المذاكرة" }
-        ],
-        marriage: [
-            { t: "رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ.", n: "دعاء سيدنا موسى (ييسر الزواج)" },
-            { t: "رَبَّنَا هَبْ لَنَا مِنْ أَزْواجِنا وَذُرِّيَّاتِنا قُرَّةَ أَعْيُنٍ وَاجْعَلْنا لِلْمُتَّقِينَ إِماماً.", n: "لصلاح الزوج والذرية" }
-        ],
-        distress: [
-            { t: "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ.", n: "دعاء ذي النون (ما دعا به مكروب إلا استجيب له)" },
-            { t: "اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والبخل والجبن، وضلع الدين وغلبة الرجال.", n: "لطرد الهم" }
-        ],
-        market: [
-            { t: "لا إِلهَ إِلاَّ اللهُ وَحْدَهُ لا شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لا يَمُوتُ بِيَدِهِ الخَيْرُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.", n: "أجر عظيم عند دخول السوق" }
-        ],
-        travel: [
-            { t: "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ.", n: "عند الركوب" },
-            { t: "اللهم إنا نسألك في سفرنا هذا البر والتقوى ومن العمل ما ترضى.", n: "دعاء السفر" }
-        ],
-        wakeup: [
-            { t: "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ.", n: "عند الاستيقاظ" }
-        ]
+        // يمكن إضافة المزيد هنا بنفس النمط
     };
 
-    function showDhikr(cat) {
-        const listDiv = document.getElementById('dhikr-list');
-        document.getElementById('welcome-msg').classList.add('hidden');
-        listDiv.innerHTML = `<h2 class="section-title">${getCategoryTitle(cat)}</h2>`;
+    function showSection(key) {
+        const area = document.getElementById('content-list');
+        document.getElementById('welcome').classList.add('hidden');
+        area.innerHTML = '';
 
-        data[cat].forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'dhikr-item';
-            div.innerHTML = `
-                <span class="quran-text">${item.t}</span>
-                <span class="note">🔹 ${item.n}</span>
-            `;
-            listDiv.appendChild(div);
-        });
-        
-        window.scrollTo({ top: document.getElementById('content-area').offsetTop - 20, behavior: 'smooth' });
+        if(key === 'quran') {
+            let html = '<div class="quran-list">';
+            database.quran.forEach((s, index) => {
+                html += `<button class="surah-btn" onclick="viewSurah(${index})">${s.name}</button>`;
+            });
+            html += '</div><div id="surah-text" style="margin-top:20px; font-size:1.8rem;"></div>';
+            area.innerHTML = html;
+        } else {
+            database[key]?.forEach(item => {
+                area.innerHTML += `<div class="dhikr-card">${item.t}</div>`;
+            });
+        }
     }
 
-    function getCategoryTitle(cat) {
-        const titles = {
-            morning: "أذكار الصباح", evening: "أذكار المساء", sleep: "أذكار النوم",
-            wakeup: "أذكار الاستيقاظ", rizq: "أدعية الرزق", study: "أدعية الدراسة والنجاح",
-            marriage: "أدعية تيسير الزواج", market: "ذكر دخول السوق", travel: "أذكار السفر",
-            distress: "دعاء الكرب والهم"
-        };
-        return titles[cat];
+    function viewSurah(index) {
+        document.getElementById('surah-text').innerHTML = `
+            <hr> <h3 style="color:var(--primary-purple)">سورة ${database.quran[index].name}</h3>
+            <p style="background:#f9f9f9; padding:20px; border-radius:10px;">${database.quran[index].text}</p>
+        `;
     }
 </script>
-
 </body>
 </html>

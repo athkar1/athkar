@@ -630,6 +630,47 @@ home_dua: [
         // عرض الأحاديث المختارة في الشريط
         ticker.innerHTML = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
     }
+      let count = 0; // تعريف العداد
+
+function showTasbeeh() {
+    const view = document.getElementById('main-content');
+    // بناء شكل المسبحة داخل الصندوق
+    view.innerHTML = `
+        <h2 class="section-title">المسبحة الإلكترونية</h2>
+        <div style="text-align: center; padding: 20px;">
+            <p style="font-size: 1.5rem; color: var(--primary-purple);">اضغط على الدائرة للتسبيح</p>
+            
+            <div id="circle-btn" onclick="increment()" style="width: 200px; height: 200px; border: 10px solid var(--gold-accent); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 30px auto; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); cursor: pointer; user-select: none;">
+                <span id="tasbeeh-count" style="font-size: 4rem; color: var(--primary-purple); font-weight: bold;">0</span>
+                <span style="color: #888; font-size: 1.2rem;">تسبيحة</span>
+            </div>
+
+            <button onclick="resetCounter()" style="background: #ff4444; color: white; border: none; padding: 12px 30px; border-radius: 10px; cursor: pointer; font-weight: bold; font-family: 'Amiri', serif; font-size: 1.1rem;">تصفير العداد</button>
+        </div>
+    `;
+    // إعادة العداد للصفر عند فتح التبويب أو إبقائه على القيمة الحالية
+    document.getElementById('tasbeeh-count').innerText = count;
+    window.scrollTo({ top: 350, behavior: 'smooth' });
+}
+
+function increment() {
+    count++;
+    document.getElementById('tasbeeh-count').innerText = count;
+    
+    // تأثير بصري عند الضغط (تصغير وتكبير)
+    const btn = document.getElementById('circle-btn');
+    btn.style.transform = "scale(0.95)";
+    setTimeout(() => { btn.style.transform = "scale(1)"; }, 100);
+
+    // اهتزاز بسيط للموبايل لزيادة التفاعل
+    if (navigator.vibrate) navigator.vibrate(50);
+}
+
+function resetCounter() {
+    if(confirm("هل تريد تصفير العداد والبدء من جديد؟")) {
+        count = 0;
+        document.getElementById('tasbeeh-count').innerText = count;
+    }  
 };
 </script>
 

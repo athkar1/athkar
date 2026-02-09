@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أفلا يتذكرون | للأذكار والأدعية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Reem+Kufi:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #5c2d91;
+            --light-silver: #f4f4f9;
+            --accent-gold: #d4af37;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--light-silver);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        /* الزخارف الإسلامية في الخلفية */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/islamic-art.png');
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        header {
+            background-color: var(--primary-purple);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 5px solid var(--accent-gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* شبكة الأزرار */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .category-btn {
+            background: white;
+            border: 2px solid var(--primary-purple);
+            color: var(--primary-purple);
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .category-btn:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* منطقة عرض الأذكار */
+        #content-area {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            min-height: 300px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .dhikr-item {
+            border-bottom: 1px dashed #ccc;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* الخط القرآني */
+        .quran-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            color: var(--primary-purple);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+            background: #f9f0ff;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .translation-text {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>أفلا يتذكرون</h1>
+    <p>حصن المسلم اليومي بلمسة من الهدوء</p>
+</header>
+
+<div class="container">
+    <div class="category-grid">
+        <button class="category-btn" onclick="showDhikr('morning')">أذكار الصباح</button>
+        <button class="category-btn" onclick="showDhikr('evening')">أذكار المساء</button>
+        <button class="category-btn" onclick="showDhikr('study')">الدراسة والنجاح</button>
+        <button class="category-btn" onclick="showDhikr('marriage')">الزواج</button>
+        <button class="category-btn" onclick="showDhikr('rizq')">الرزق والمال</button>
+        <button class="category-btn" onclick="showDhikr('sleep')">قبل النوم</button>
+        <button class="category-btn" onclick="showDhikr('market')">دخول السوق</button>
+        <button class="category-btn" onclick="showDhikr('debt')">قضاء الدين</button>
+    </div>
+
+    <div id="content-area">
+        <div id="welcome-msg" style="text-align: center; padding-top: 50px;">
+            <h2 style="color: var(--primary-purple);">مرحباً بك في رحاب الذكر</h2>
+            <p>اختر قسماً من الأعلى لعرض الأذكار والأدعية</p>
+        </div>
+        <div id="dhikr-list"></div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 موقع أفلا يتذكرون - صدقة جارية
+</footer>
+
+<script>
+    const data = {
+        morning: [
+            { text: "أَصْبَحْنَا وَأَصْبَحَ المُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لا إِلَهَ إلاَّ اللَّهُ وَحْدَهُ لا شَرِيكَ لَهُ", note: "يُقرأ مرة واحدة" },
+            { text: "اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ...", note: "آية الكرسي - حفظ من الجن" }
+        ],
+        study: [
+            { text: "رَبِّ اشْرَحْ لِي صَدْرِي وَيَسِّرْ لِي أَمْرِي وَاحْلُلْ عُقْدَةً مِّن لِّسَانِي يَفْقَهُوا قَوْلِي", note: "لتيسير الفهم والنطق" },
+            { text: "اللهم لا سهل إلا ما جعلته سهلاً، وأنت تجعل الحزن إذا شئت سهلاً", note: "قبل البدء بالامتحان" }
+        ],
+        marriage: [
+            { text: "رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا", note: "دعاء لطلب الزوج الصالح والذرية" },
+            { text: "اللهم إني أسألك من خيرها وخير ما جبلتها عليه", note: "دعاء البركة" }
+        ],
+        rizq: [
+            { text: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا", note: "يُقال بعد صلاة الفجر" },
+            { text: "فَقُلْتُ اسْتَغْفِرُوا رَبَّكُمْ إِنَّهُ كَانَ غَفَّارًا يُرْسِلِ السَّمَاءَ عَلَيْكُم مِّدْرَارًا", note: "الاستغفار مفتاح الرزق" }
+        ],
+        market: [
+            { text: "لا إِلهَ إِلاَّ اللهُ وَحْدَهُ لا شَرِيكَ لَهُ، لَهُ المُلْكُ وَلَهُ الحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لا يَمُوتُ بِيَدِهِ الخَيْرُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ", note: "يكتب الله له بها ألف ألف حسنة" }
+        ],
+        debt: [
+            { text: "اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ", note: "لقضاء الدين ولو كان كجبل" }
+        ],
+        sleep: [
+            { text: "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ", note: "أذكار النوم" }
+        ],
+        evening: [
+            { text: "أَمْسَيْنَا وَأَمْسَى المُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ", note: "أذكار المساء" }
+        ]
+    };
+
+    function showDhikr(category) {
+        const listDiv = document.getElementById('dhikr-list');
+        const welcome = document.getElementById('welcome-msg');
+        
+        welcome.classList.add('hidden');
+        listDiv.innerHTML = ''; // مسح المحتوى القديم
+
+        data[category].forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'dhikr-item';
+            div.innerHTML = `
+                <span class="quran-text">${item.text}</span>
+                <span class="translation-text">(${item.note})</span>
+            `;
+            listDiv.appendChild(div);
+        });
+    }
+</script>
+
+</body>
+</html>

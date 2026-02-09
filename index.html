@@ -597,7 +597,8 @@ home_dua: [
         const selectedHadiths = shuffled.slice(0, 200);
         
         // عرض الأحاديث المختارة في الشريط
-        ticker.innerHTML = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
+        const text = selectedHadiths.join(" &nbsp; <span style='color:white'>✨</span> &nbsp; ");
+ticker.innerHTML = text + " &nbsp;&nbsp;&nbsp; " + text;
     }
 };
 </script>

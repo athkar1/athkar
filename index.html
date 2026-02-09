@@ -22,16 +22,26 @@
             color: #333;
         }
 
-        .hadith-ticker {
-            background: var(--gold-accent);
-            color: white;
-            padding: 12px 0;
-            font-size: 1.3rem;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            border-bottom: 3px solid #b38f1d;
-            text-align: center;
-white-space: normal;
+      .hadith-ticker {
+    background: var(--gold-accent);
+    color: white;
+    padding: 12px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border-bottom: 3px solid #b38f1d;
+    overflow: hidden;   /* ⭐ هذا السطر مهم */
+}
+
+@keyframes scrollTicker {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
         }
 
         header {
@@ -117,8 +127,11 @@ white-space: normal;
 <body>
 
 <div class="hadith-ticker">
-<div id="mainTicker">جاري تحميل الأحاديث الشريفة...</div>
+  <div id="mainTicker" class="ticker-content">
+    جاري تحميل الأحاديث الشريفة...
+  </div>
 </div>
+
 
 <header>
     <h1>نُور الذِّكر</h1>
@@ -590,15 +603,16 @@ home_dua: [
 
     window.onload = function () {
     const ticker = document.getElementById("mainTicker");
-    let index = 0;
 
-    function showHadith() {
-        ticker.innerText = hadithDatabase[index];
-        index++;
+    // ترتيب عشوائي
+    const shuffled = hadithDatabase.sort(() => Math.random() - 0.5);
 
-        if (index >= hadithDatabase.length) {
-            index = 0; // يرجع لأول حديث
-        }
+    // عرض كل الأحاديث بدون تقطيع
+    ticker.innerHTML = shuffled.join(
+        " &nbsp; ✨ &nbsp; "
+    );
+};
+
     }
 
     showHadith(); // أول حديث

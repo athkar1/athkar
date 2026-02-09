@@ -110,7 +110,36 @@
         @media (max-width: 768px) {
             header h1 { font-size: 2.5rem; }
             .menu-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+       .tasbeeh-container {
+    text-align: center;
+    padding: 20px;
+}
+.counter-circle {
+    width: 200px;
+    height: 200px;
+    border: 10px solid var(--gold-accent);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    background: var(--white);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+.counter-circle:active { transform: scale(0.95); }
+.counter-num { font-size: 3.5rem; color: var(--primary-purple); font-weight: bold; }
+.reset-btn {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -136,6 +165,7 @@
 
 <div class="container">
     <div class="menu-grid">
+        <button class="menu-btn" onclick="showTasbeeh()">📿 المسبحة الإلكترونية</button>
         <button class="menu-btn" onclick="showDhikr('morning')">🌅 أذكار الصباح</button>
         <button class="menu-btn" onclick="showDhikr('evening')">🌆 أذكار المساء</button>
         <button class="menu-btn" onclick="showDhikr('prayer')">🕌 أذكار الصلاة</button>
